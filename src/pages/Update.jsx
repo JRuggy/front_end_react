@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Update() {
+const Update = () => {
   return (
     <div>Update</div>
   )
