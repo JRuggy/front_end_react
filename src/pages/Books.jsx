@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { NumericFormat } from 'react-number-format';
 
 const Books = () => {
   const [books, setBooks] = useState([])
@@ -25,7 +26,10 @@ const Books = () => {
             {book.cover && <img src={book.cover} alt="" />}
             <h2>{book.title}</h2>
             <p>{book.description}</p>
-            <span>{book.price}</span>
+            <br />
+            <span>
+              <NumericFormat disabled value={book.price} displayType={'number'} thousandSeparator={true} />
+            </span>
           </div>
         ))}
       </div>
