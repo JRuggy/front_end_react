@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { NumericFormat } from 'react-number-format';
+import { Link } from 'react-router-dom';
 
 const Books = () => {
   const [books, setBooks] = useState([])
@@ -32,6 +33,9 @@ const Books = () => {
             </span>
           </div>
         ))}
+      </div>
+      <div className='container'>
+        <button> <Link to="/add">Add New Book</Link> </button>
       </div>
     </div>
   )
