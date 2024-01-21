@@ -1,8 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Update = () => {
+  const [book, setBook] = useState({
+    title: "",
+    description: "",
+    price: null,
+    cover: "",
+  })
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const bookId = location.pathname.split("/")[2]
+
+  const handleChange = (e) => {
+    setBook(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const handleClick = async e => {
+    e.preventDefault()
+    try {
+      await axios.put("http://localhost:8800/books/" + bookId, book);
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  console.log(book)
+
   return (
-    <div>Update</div>
+    <div>
+      <div className='form'>
+        <h1>Update The Book</h1>
+        <input onChange={handleChange} name='title' type="text" placeholder='title' />
+        <input onChange={handleChange} name='description' type="text" placeholder='description' />
+        <input onChange={handleChange} name='price' type="number" placeholder='price' />
+        <input onChange={handleChange} name='cover' type="text" placeholder='cover' />
+
+        <button className='formButton' onClick={handleClick}>Update</button>
+
+      </div>
+    </div>
   )
 }
 
